@@ -1,5 +1,6 @@
 import tensorflow as tf
 import numpy as np
+import matplotlib.pyplot as plt
 
 x_data = np.linspace(0,10,10) + np.random.uniform(-1.5,1.5,10)
 y_label = np.linspace(0,10,10) + np.random.uniform(-1.5,1.5,10)
@@ -25,7 +26,7 @@ with tf.Session() as sess:
 
     sess.run(init)
 
-    epochs = 100
+    epochs = 1
 
     for i in range(epochs):
 
@@ -34,5 +35,21 @@ with tf.Session() as sess:
 
     # Fetch Back Results
     print(final_slope,final_intercept)
-    final_slope , final_intercept = sess.run([m,b])
-    print(final_slope,final_intercept)
+    #final_slope , final_intercept = sess.run([m,b])
+    #print(final_slope,final_intercept)
+
+X_test = np.linspace(-1,11,10)
+
+
+# y= mx + b
+
+y_pred_plot = final_slope * X_test + final_intercept
+
+
+
+plt.plot(X_test,y_pred_plot , 'r')
+
+plt.plot(x_data , y_label , "*")
+
+plt.show()
+
